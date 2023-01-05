@@ -7,11 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div>Main ! JSP</div>
-    <div>Board</div>
-    <div>
-        <a href="/board/form"></a>
-    </div>
-
+    <div>board/list</div>
 </body>
 </html>

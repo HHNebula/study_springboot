@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <div>Main ! JSP</div>
-    <div>Board</div>
-    <div>
-        <a href="/board/form"></a>
-    </div>
+    <div>/board/form</div>
 
+    <form action="/board/form" method="post">
+        <div><input type="text" name="title" id=""></div>
+        <div><button>Submit</button></div>
+    </form>
 </body>
 </html>

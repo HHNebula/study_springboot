@@ -11,12 +11,20 @@ public class HomeController {
     // 모델에서 돌아온 데이터를 컨트롤러가 가지고 있음
     // 해당 데이터와 파일 경로를 통해 View 로 출력
 
-    @RequestMapping(value = "/homejsp")
+    @RequestMapping(value = { "", "/", "/main" })
+    public String main() {
+
+        int i = 0;
+
+        return "/WEB-INF/views/main.jsp";
+    }
+
+    @RequestMapping(value = "/home")
     public String home() {
 
         int i = 0;
 
-        return "WEB-INF/views/home.jsp";
+        return "/WEB-INF/views/main.jsp";
     }
 
 }
