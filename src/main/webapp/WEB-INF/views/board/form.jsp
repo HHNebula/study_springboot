@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <div class="fs-3">
+        <div class="fs-3 my-3">
             Board Form
         </div>
         <form action="/board/form" method="post">
