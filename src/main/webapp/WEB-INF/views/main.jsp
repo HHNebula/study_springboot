@@ -9,6 +9,9 @@
 <body>
     <div>Main ! JSP</div>
     <div>Board</div>
+    <div>
+        <a href="/board/form">Main</a>
+    </div>
 
 </body>
 </html>
