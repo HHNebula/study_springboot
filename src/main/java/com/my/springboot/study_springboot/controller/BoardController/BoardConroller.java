@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BoardConroller {
 
     // 게시판 진입 시 리스트 출력
-    @RequestMapping(value = { "/board", "/board/lsit" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/board", "/board/list" }, method = RequestMethod.GET)
     public String board() {
 
         return "/WEB-INF/views/board/list.jsp";
@@ -19,7 +19,6 @@ public class BoardConroller {
     public String formGet() {
 
         return "/WEB-INF/views/board/form.jsp";
-
     }
 
     // 작성 후 등록하기 클릭 시
@@ -28,7 +27,6 @@ public class BoardConroller {
 
         // insert biz
         return "/WEB-INF/views/board/list.jsp";
-
     }
 
     // 게시글 수정하기 진입
@@ -36,7 +34,6 @@ public class BoardConroller {
     public String edit() {
 
         return "/WEB-INF/views/board/edit.jsp";
-
     }
 
     // 게시글 클릭 시 View
@@ -44,7 +41,6 @@ public class BoardConroller {
     public String view() {
 
         return "/WEB-INF/views/board/view.jsp";
-
     }
 
 }
