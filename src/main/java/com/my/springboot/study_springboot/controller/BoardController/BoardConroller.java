@@ -90,7 +90,11 @@ public class BoardConroller {
      * @return edit.jsp
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView edit(ModelAndView modelAndView) {
+    public ModelAndView edit(/* @RequestParam String title, */ModelAndView modelAndView) {
+        // System.out.println(title);
+        // DataInfors dataInfors = new DataInfors();
+        // BoardBean boardBean = dataInfors.getDataWithMamberBean(title);
+        // modelAndView.addObject("boardBean", boardBean);
         modelAndView.setViewName("board/edit");
         return modelAndView;
     }
