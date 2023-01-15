@@ -14,14 +14,14 @@ public class HomeController {
     @RequestMapping(value = { "", "/", "/main" })
     public String main() {
 
-        return "/WEB-INF/views/main.jsp";
+        return "main";
 
     }
 
     @RequestMapping(value = "/home")
     public String home() {
 
-        return "/WEB-INF/views/main.jsp";
+        return "main";
 
     }
 

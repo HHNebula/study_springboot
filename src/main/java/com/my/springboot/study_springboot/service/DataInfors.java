@@ -9,7 +9,7 @@ public class DataInfors {
     public HashMap<String, String> getSearchFormData() {
         HashMap<String, String> searchForm = new HashMap<String, String>();
         searchForm.put("search_key", "Search Title");
-        searchForm.put("name", "요주의랩!");
+        searchForm.put("name", "SOO SPRING BOOT");
         searchForm.put("id", "ID0001");
         return searchForm;
     }
