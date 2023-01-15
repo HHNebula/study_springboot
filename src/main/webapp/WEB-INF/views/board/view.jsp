@@ -15,23 +15,28 @@
 
 <body>
     <div class="container">
+        ${boardBean}
         <div class="fs-3 my-3">
             Board View
         </div>
         <div class="fs-3 my-3">
-            Title
+            ${boardBean.title}
         </div>
         <div class="fs-6 my-3">
-            <span>Writer</span>
+            <span>${boardBean.userName}</span>
             <span>|</span>
-            <span>Date</span>
+            <span>${boardBean.date}</span>
         </div>
         <div class="fs-6 my-3">
-            Contents
+            ${boardBean.content}
         </div>
-        <div class="my-3 text-center">
-            <a href="/board" class="btn btn-primary">Go list</a>
+        <div class="my-3 text-center d-flex justify-content-center">
+            <a href="/board/list" class="btn btn-primary mx-3">Go list</a>
+            <form action="/board/edit" method="post" class="mx-3">
+                <button class="btn btn-primary">Edit</button>
+            </form>
         </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

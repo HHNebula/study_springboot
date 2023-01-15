@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.springboot.study_springboot.beans.BoardBean;
@@ -18,6 +19,8 @@ import com.my.springboot.study_springboot.service.DataInfors;
 //   + list.jsp(/board) -> form.jsp(/board_our/form) -> list.jsp(/board_our/save) with Post
 //   + view.jsp(/board_our/view) -> edit.jsp(/board_our/edit) -> list.jsp(/board_our/save)
 
+// 클래스 레벨의 RequestMapping
+// 클래스 설정 시 메소드에 설정한 URL은 모두 클래스의 서브 URL이 된다.
 @Controller
 @RequestMapping(value = "/board")
 public class BoardConroller {
@@ -26,7 +29,7 @@ public class BoardConroller {
     /**
      * 게시판 진입 시 리스트 출력
      * 
-     * @return modelAndView
+     * @return list.jsp
      */
     @RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
     public ModelAndView list() {
@@ -46,37 +49,69 @@ public class BoardConroller {
         modelAndView.setViewName("board/list");
         return modelAndView; // --> Dispatcher Servlet }
     }
-    // =========================================================================================================
 
-    // 게시글 작성하기 진입
-    @RequestMapping(value = "/board/form", method = RequestMethod.GET)
-    public String formGet() {
+    // =========================================================================================================
+    /**
+     * 게시판 작성하기 진입
+     * Writing Out Work
+     * 
+     * @return form.jsp
+     */
+    @RequestMapping(value = "/form", method = RequestMethod.GET)
+    public ModelAndView form() {
 
         // Writing Out
-        return "/WEB-INF/views/board/form.jsp";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("board/form");
+        return modelAndView; // --> Dispatcher Servlet }
     }
 
-    // 작성 후 등록하기 클릭 시
-    @RequestMapping(value = "/board/form", method = RequestMethod.POST)
-    public String formPost() {
+    // =========================================================================================================
+    /**
+     * 게시판 글 등록하기 작업
+     * Insert Biz Work
+     * 
+     * @param ModelAndView modelAndView
+     * @return list.jsp
+     */
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public ModelAndView insert(ModelAndView modelAndView) {
 
-        // Insert Biz
-        return "/WEB-INF/views/board/list.jsp";
+        modelAndView.setViewName("board/list");
+        return modelAndView; // --> Dispatcher Servlet }
     }
 
-    // 게시글 수정하기 진입
+    // =========================================================================================================
+    /**
+     * 게시글 수정하기 진입
+     * Edit Work
+     * 
+     * @param ModelAndView modelAndView
+     * @return edit.jsp
+     */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView edit(ModelAndView modelAndView) {
         modelAndView.setViewName("board/edit");
         return modelAndView;
     }
 
-    // 게시글 클릭 시 View
-    @RequestMapping(value = "/board/view", method = RequestMethod.GET)
-    public String view() {
-
-        // Content View
-        return "/WEB-INF/views/board/view.jsp";
+    // =========================================================================================================
+    /**
+     * 게시글 조회 기능
+     * View Work
+     * 
+     * @param String       uId
+     * @param ModelAndView modelAndView
+     * @return view.jsp
+     */
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam String title, ModelAndView modelAndView) {
+        System.out.println(title);
+        DataInfors dataInfors = new DataInfors();
+        BoardBean boardBean = dataInfors.getDataWithMamberBean(title);
+        modelAndView.addObject("boardBean", boardBean);
+        modelAndView.setViewName("board/view");
+        return modelAndView;
     }
 
 }

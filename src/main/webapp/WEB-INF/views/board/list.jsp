@@ -69,16 +69,17 @@
             <%-- for(BoardBean board: boardList)  { --%>
             <%-- board.getTitle() --%>
             <%-- } --%>
-            <%-- 위에것들을 간편하게 --%>
+            <%-- 위 내용을 이렇게 --%>
             <c:forEach items="${boardList}" var="board" varStatus="status">
-            <%-- 0부터 5까지  boardList가 value로 튀어나옴 --%>
+            <%-- 0 ~ 5 까지 boardList 가 value 로 출력 --%>
                 <div>
                     ${board.title} : ${status.count}, ${status.index}, ${status.first}, ${status.last}
-                    <%-- first는 첫번째냐? 맞으면 true last도 마지막이냐? 맞으면 true --%>
+                    <%-- first == true / last == true --%>
                 </div>
             </c:forEach>
         </div>
 
+        <%-- 게시글 목록 = BoardList --%>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -90,23 +91,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td scope="row">1</td>
-                    <td>This is Title</td>
+                    <td scope=>1</td>
+                    <td><a href="/board/view?title=또 북한발 해킹?... daum아닌 daurn에서 메일 오면 주의">또 북한발 해킹?... "daum"아닌 "daurn"에서 메일 오면 주의</a></td>
                     <td>Tom</td>
                     <td>2022-01-05</td>
                 </tr>
                 <tr>
-                    <td scope="row">2</td>
-                    <td>This is Title</td>
+                    <td scope=>2</td>
+                    <td><a href="/board/view?title=네이버 기술로 혁신, 2024년 흑자 만들겠다">네이버 기술로 혁신, 2024년 흑자 만들겠다</a></td>
                     <td>Hardy</td>
+                    <td>2022-01-06</td>
+                </tr>
+                <tr>
+                    <td scope=>3</td>
+                    <td><a href="/board/view?title=韓 원자력 UAE 수출 6개월 빨라진다">韓 원자력 UAE 수출 6개월 빨라진다</a></td>
+                    <td>Jasco</td>
                     <td>2022-01-06</td>
                 </tr>
             </tbody>
         </table>
+
+        <%-- 게시글 등록하기 버튼 --%>
         <div class="my-3 text-center">
             <a href="/board/form" class="btn btn-primary">Create</a>
         </div>
-    </div>
+
+    </div> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

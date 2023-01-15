@@ -18,7 +18,7 @@
         <div class="fs-3 my-3">
             Board Form
         </div>
-        <form action="/board/form" method="post">
+        <form action="/board/insert" method="post">
             <div class="form-floating my-3">
                 <input type="text" class="form-control" placeholder="Title" id="title" name="title">
                 <label for="title">Title</label>
