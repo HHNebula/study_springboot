@@ -14,7 +14,7 @@ public class NoticeInfo {
         noticeBean.setuId("1");
         noticeBean.setTitle("설연휴 배송 및 휴무 안내");
         noticeBean.setWriter("관리자 햇님");
-        noticeBean.setContent("설연휴간 배송지연이 예상되오니 양해 바랍니다.\n설연휴간 휴무입니다.");
+        noticeBean.setContent("설연휴간 배송지연이 예상되오니 양해 바랍니다.<br>설연휴간 휴무입니다.");
         noticeBean.setDate("2023-01-14");
         noticeInfos.add(noticeBean);
 
