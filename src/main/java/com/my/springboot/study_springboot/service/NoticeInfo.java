@@ -6,16 +6,7 @@ import com.my.springboot.study_springboot.beans.NoticeBean;
 
 public class NoticeInfo {
 
-    public ArrayList<String> getTitles() {
-        ArrayList<String> noticeTitles = new ArrayList<>();
-        ArrayList<NoticeBean> noticeInfos = getNoticeList();
-        for (int i = 0; i < noticeInfos.size(); i++) {
-            NoticeBean noticeBean = noticeInfos.get(i);
-            noticeTitles.add(noticeBean.getTitle());
-        }
-        return noticeTitles;
-    }
-
+    // 게시글 각각의 정보를 NoticeBean에 담아 ArrayList 에 추가한 후 리턴
     public ArrayList<NoticeBean> getNoticeList() {
         ArrayList<NoticeBean> noticeInfos = new ArrayList<>();
 
@@ -46,6 +37,7 @@ public class NoticeInfo {
         return noticeInfos;
     }
 
+    // Param 으로 받아온 uId 와 동일한 NoticeBean 리턴
     public NoticeBean getNoticeBean(String uId) {
         NoticeBean noticeBean = new NoticeBean();
         ArrayList<NoticeBean> noticeInfos = getNoticeList();
