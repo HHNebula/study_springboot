@@ -39,7 +39,7 @@ public class NoticeInfo {
 
     // Param 으로 받아온 uId 와 동일한 NoticeBean 리턴
     public NoticeBean getNoticeBean(String uId) {
-        NoticeBean noticeBean = new NoticeBean();
+        NoticeBean noticeBean = null;
         ArrayList<NoticeBean> noticeInfos = getNoticeList();
         for (int i = 0; i < noticeInfos.size(); i++) {
             noticeBean = noticeInfos.get(i);
