@@ -10,34 +10,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Board Edit</title>
+    <title>Notice Form</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="fs-3">
-            Board Edit
+        <div class="fs-3 my-3">
+            Notice Form
         </div>
-        <form action="/board/form" method="post">
+        <form action="/notice/save" method="post">
             <div class="form-floating my-3">
-                <input type="text" class="form-control" placeholder="Title" id="title" name="title" value="${boardBean.title}">
-                <label for="title">Title</label>
+                <input type="text" class="form-control" placeholder="uId" id="uId" name="uId">
+                <label for="uId">번호</label>
             </div>
             <div class="form-floating my-3">
-                <textarea class="form-control" placeholder="Leave a comment here" id="content"
-                    style="height: 20vw;">${boardBean.content}</textarea>
-                <label for="content">Content</label>
+                <input type="text" class="form-control" placeholder="Title" id="title" name="title">
+                <label for="title">제목</label>
             </div>
             <div class="form-floating my-3">
-                <input type="text" class="form-control" placeholder="Writer" id="writer" name="writer" value="${boardBean.userName}">
-                <label for="writer">Writer</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="content" name="content"
+                    style="height: 20vw;"></textarea>
+                <label for="content">내용</label>
             </div>
             <div class="form-floating my-3">
-                <input type="date" class="form-control" placeholder="Date" id="date" name="date" value="${boardBean.date}">
-                <label for="date">Date</label>
+                <input type="text" class="form-control" placeholder="Writer" id="writer" name="writer">
+                <label for="writer">작성자</label>
+            </div>
+            <div class="form-floating my-3">
+                <input type="date" class="form-control" placeholder="Date" id="date" name="date">
+                <label for="date">작성일</label>
             </div>
             <div class="my-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">등록하기</button>
             </div>
         </form>
     </div>

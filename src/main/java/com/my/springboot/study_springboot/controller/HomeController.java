@@ -13,16 +13,17 @@ public class HomeController {
 
     @RequestMapping(value = { "", "/", "/main" })
     public String main() {
-
         return "main";
-
     }
 
     @RequestMapping(value = "/home")
     public String home() {
+        return "home";
+    }
 
-        return "main";
-
+    @RequestMapping(value = "/jstlFormats")
+    public String jstlFormats() {
+        return "jstl_formats";
     }
 
 }

@@ -92,19 +92,19 @@
             <tbody>
                 <tr>
                     <td scope=>1</td>
-                    <td><a href="/board/view?title=또 북한발 해킹?... daum아닌 daurn에서 메일 오면 주의">또 북한발 해킹?... "daum"아닌 "daurn"에서 메일 오면 주의</a></td>
+                    <td><a href="/board/view/또 북한발 해킹?... daum아닌 daurn에서 메일 오면 주의">또 북한발 해킹?... "daum"아닌 "daurn"에서 메일 오면 주의</a></td>
                     <td>Tom</td>
                     <td>2022-01-05</td>
                 </tr>
                 <tr>
                     <td scope=>2</td>
-                    <td><a href="/board/view?title=네이버 기술로 혁신, 2024년 흑자 만들겠다">네이버 기술로 혁신, 2024년 흑자 만들겠다</a></td>
+                    <td><a href="/board/view/네이버 기술로 혁신, 2024년 흑자 만들겠다">네이버 기술로 혁신, 2024년 흑자 만들겠다</a></td>
                     <td>Hardy</td>
                     <td>2022-01-06</td>
                 </tr>
                 <tr>
                     <td scope=>3</td>
-                    <td><a href="/board/view?title=韓 원자력 UAE 수출 6개월 빨라진다">韓 원자력 UAE 수출 6개월 빨라진다</a></td>
+                    <td><a href="/board/view/韓 원자력 UAE 수출 6개월 빨라진다">韓 원자력 UAE 수출 6개월 빨라진다</a></td>
                     <td>Jasco</td>
                     <td>2022-01-06</td>
                 </tr>

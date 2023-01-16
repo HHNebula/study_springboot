@@ -14,6 +14,8 @@
     <div>Board</div>
     <div>
         <a href="/board">Board</a>
+        <a href="/notice">Notice</a>
+        <a href="/jstlFormats">jstsl Formats</a>
     </div>
 
 </body>

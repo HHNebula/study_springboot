@@ -3,7 +3,7 @@ package com.my.springboot.study_springboot.beans;
 public class BoardBean { // vo, dao, dto
     private String title;
     private String content;
-    private String userName;
+    private String writer;
     private String date;
 
     public String getTitle() {
@@ -22,12 +22,12 @@ public class BoardBean { // vo, dao, dto
         this.content = content;
     }
 
-    public String getUserName() {
-        return this.userName;
+    public String getWriter() {
+        return this.writer;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
     public String getDate() {

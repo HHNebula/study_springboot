@@ -1,8 +1,10 @@
 package com.my.springboot.study_springboot.controller.BoardController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,11 +73,24 @@ public class BoardConroller {
      * 게시판 글 등록하기 작업
      * Insert Biz Work
      * 
-     * @param ModelAndView modelAndView
+     * @param HashMap<String,String> params
+     * @param ModelAndView           modelAndView
      * @return list.jsp
      */
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public ModelAndView insert(ModelAndView modelAndView) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    // public ModelAndView insert(@RequestParam HashMap<String, Object> params,
+    // ModelAndView modelAndView) {
+    public ModelAndView insert(BoardBean params, ModelAndView modelAndView) {
+        // RequestParam 을 묶어서 HashMap 형식으로 받아온다 >>
+        // System.out.println((String) params.get("title"));
+        // System.out.println((String) params.get("content"));
+        // System.out.println((String) params.get("writer"));
+        // System.out.println((String) params.get("date"));
+
+        System.out.println(params.getTitle());
+        System.out.println(params.getContent());
+        System.out.println(params.getWriter());
+        System.out.println(params.getDate());
 
         modelAndView.setViewName("board/list");
         return modelAndView; // --> Dispatcher Servlet }
@@ -90,11 +105,11 @@ public class BoardConroller {
      * @return edit.jsp
      */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView edit(/* @RequestParam String title, */ModelAndView modelAndView) {
-        // System.out.println(title);
-        // DataInfors dataInfors = new DataInfors();
-        // BoardBean boardBean = dataInfors.getDataWithMamberBean(title);
-        // modelAndView.addObject("boardBean", boardBean);
+    public ModelAndView edit(@RequestParam String title, ModelAndView modelAndView) {
+        System.out.println(title);
+        DataInfors dataInfors = new DataInfors();
+        BoardBean boardBean = dataInfors.getDataWithMamberBean(title);
+        modelAndView.addObject("boardBean", boardBean);
         modelAndView.setViewName("board/edit");
         return modelAndView;
     }
@@ -108,8 +123,8 @@ public class BoardConroller {
      * @param ModelAndView modelAndView
      * @return view.jsp
      */
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public ModelAndView view(@RequestParam String title, ModelAndView modelAndView) {
+    @RequestMapping(value = "/view/{title}", method = RequestMethod.GET)
+    public ModelAndView view(@PathVariable String title, ModelAndView modelAndView) {
         System.out.println(title);
         DataInfors dataInfors = new DataInfors();
         BoardBean boardBean = dataInfors.getDataWithMamberBean(title);

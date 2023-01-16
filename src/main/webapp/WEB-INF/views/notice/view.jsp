@@ -10,33 +10,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Board View</title>
+    <title>Notice View</title>
 </head>
 
 <body>
     <div class="container">
-        ${boardBean}
         <div class="fs-3 my-3">
-            Board View
+            Notice View
         </div>
         <div class="fs-3 my-3">
-            ${boardBean.title}
+            ${noticeBean.getTitle()}
         </div>
         <div class="fs-6 my-3">
-            <span>${boardBean.userName}</span>
+            <span>${noticeBean.getWriter()}</span>
             <span>|</span>
-            <span>${boardBean.date}</span>
+            <span>${noticeBean.getDate()}</span>
         </div>
         <div class="fs-6 my-3">
-            ${boardBean.content}
+            ${noticeBean.getContent()}
         </div>
         <div class="my-3 text-center d-flex justify-content-center">
-            <a href="/board/list" class="btn btn-primary mx-3">Go list</a>
-            <form action="/board/edit?title=${boardBean.title}" method="post" class="mx-3">
-                <button class="btn btn-primary">Edit</button>
+            <a href="/notice/list" class="btn btn-primary mx-3">목록으로</a>
+            <form action="/notice/edit/${noticeBean.getuId()}" method="post" class="mx-3">
+                <button class="btn btn-primary">수정하기</button>
             </form>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
