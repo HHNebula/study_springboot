@@ -11,28 +11,30 @@ import org.springframework.web.servlet.ModelAndView;
 import com.my.springboot.study_springboot.beans.NoticeBean;
 import com.my.springboot.study_springboot.service.NoticeInfo;
 
+// 클래스 레벨의 RequestMapping 은 상위 URL
+// 메소드에 설정한 URL은 모두 클래스의 서브 URL이 된다.
 @Controller
-@RequestMapping(value = "/notice") // 상위 URL - 모든 RequestMapping 의 앞에 작성됨
+@RequestMapping(value = "/notice")
 public class NoticeController {
 
-    // Root 서블릿 - /notice > /notice/list
+    // Root 서블릿 - /notice >> /notice/list - 던지는 용도 / 리다이렉션 / URL 변화
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String root() {
         return "redirect:/notice/list";
     }
 
-    // 리스트 출력
+    // 리스트 출력 (/notice/list)
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(ModelAndView modelAndView) {
 
-        // 1. 모델&뷰 객체 생성
+        // 1. 모델&뷰 객체 생성 - Pram 으로 주어지면 생성은 불필요
         // ModelAndView modelAndView = new ModelAndView();
 
         // 2. Notice 의 정보를 담은 Bean 객체들을 ArrayList 로 받아옴
         NoticeInfo noticeInfo = new NoticeInfo();
         ArrayList<NoticeBean> noticeList = noticeInfo.getNoticeList();
 
-        // 3. 위 ArrayList 를 모델&뷰에 담음
+        // 3. 위 ArrayList 를 모델&뷰에 담음 (request.setAttribute 와 비슷한 개념)
         modelAndView.addObject("noticeList", noticeList);
 
         // 4. 모델&뷰의 뷰네임을 설정해줌 - jsp 파일의 경로
@@ -62,7 +64,7 @@ public class NoticeController {
         return modelAndView;
     }
 
-    // Notice 등록 페이지 이동
+    // Notice 등록 페이지 이동 - 단순 페이지 출력이므로 셋뷰네임만 한다.
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public ModelAndView form(ModelAndView modelAndView) {
         modelAndView.setViewName("notice/form");
@@ -80,7 +82,7 @@ public class NoticeController {
         System.out.println(noticeBean.getWriter());
         System.out.println(noticeBean.getDate());
 
-        // 2. 등록 로직을 완료 하고 List 로 리다이렉션
+        // 2. 등록 로직을 완료 하고 List 로 리다이렉션 - DB 작업 필요
         return "redirect:/notice/list";
     }
 
@@ -115,7 +117,7 @@ public class NoticeController {
         System.out.println(noticeBean.getWriter());
         System.out.println(noticeBean.getDate());
 
-        // 2. 등록 로직을 완료 하고 view 로 리다이렉션
+        // 2. 등록 로직을 완료 하고 view 로 리다이렉션 - DB 작업 필요
         return "redirect:/notice/view/" + noticeBean.getuId();
     }
 
