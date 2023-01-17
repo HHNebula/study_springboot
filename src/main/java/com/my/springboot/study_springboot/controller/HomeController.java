@@ -1,10 +1,16 @@
 package com.my.springboot.study_springboot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.my.springboot.study_springboot.dao.HomeDao;
+
 @Controller
 public class HomeController {
+
+    @Autowired
+    HomeDao homeDao;
 
     // 컨트롤러가 요청을 받아 모델과 데이터를 주고 받음
     // 모델이 데이터 베이스와 연동되어 반영
@@ -18,6 +24,7 @@ public class HomeController {
 
     @RequestMapping(value = "/home")
     public String home() {
+        Object result = homeDao.getList();
         return "home";
     }
 

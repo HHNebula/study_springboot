@@ -16,6 +16,7 @@
         <a href="/board">Board</a>
         <a href="/notice">Notice</a>
         <a href="/jstlFormats">jstsl Formats</a>
+        <a href="/commonCode/list">CommonCodeController</a>
     </div>
 
 </body>
