@@ -3,9 +3,13 @@ package com.my.springboot.study_springboot.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.stereotype.Service;
+
 import com.my.springboot.study_springboot.beans.BoardBean;
 
+@Service
 public class DataInfors {
+
     public HashMap<String, String> getSearchFormData() {
         HashMap<String, String> searchForm = new HashMap<String, String>();
         searchForm.put("search_key", "Search Title");

@@ -2,6 +2,7 @@ package com.my.springboot.study_springboot.controller.BoardController;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,10 @@ import com.my.springboot.study_springboot.service.NoticeInfo;
 @RequestMapping(value = "/notice")
 public class NoticeController {
 
+    // 필요한 의존 객체의 “타입"에 해당하는 빈을 찾아 주입한다.
+    @Autowired
+    NoticeInfo noticeInfo;
+
     // Root 서블릿 - /notice >> /notice/list - 던지는 용도 / 리다이렉션 / URL 변화
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String root() {
@@ -31,7 +36,7 @@ public class NoticeController {
         // ModelAndView modelAndView = new ModelAndView();
 
         // 2. Notice 의 정보를 담은 Bean 객체들을 ArrayList 로 받아옴
-        NoticeInfo noticeInfo = new NoticeInfo();
+        // NoticeInfo noticeInfo = new NoticeInfo(); - Autowired로 대체
         ArrayList<NoticeBean> noticeList = noticeInfo.getNoticeList();
 
         // 3. 위 ArrayList 를 모델&뷰에 담음 (request.setAttribute 와 비슷한 개념)
@@ -49,7 +54,7 @@ public class NoticeController {
     public ModelAndView view(@PathVariable String uId, ModelAndView modelAndView) {
 
         // 1. 정보를 가져오기 위해 NoticeInfo 객체 생성
-        NoticeInfo noticeInfo = new NoticeInfo();
+        // NoticeInfo noticeInfo = new NoticeInfo(); - Autowired로 대체
 
         // 2. uId 에 해당하는 게시글의 정보를 가져옴
         NoticeBean noticeBean = noticeInfo.getNoticeBean(uId);
@@ -91,7 +96,7 @@ public class NoticeController {
     public ModelAndView edit(@PathVariable String uId, ModelAndView modelAndView) {
 
         // 1. 정보를 가져오기 위해 NoticeInfo 객체 생성
-        NoticeInfo noticeInfo = new NoticeInfo();
+        // NoticeInfo noticeInfo = new NoticeInfo(); - Autowired로 대체
 
         // 2. uId 에 해당하는 게시글의 정보를 가져옴
         NoticeBean noticeBean = noticeInfo.getNoticeBean(uId);
