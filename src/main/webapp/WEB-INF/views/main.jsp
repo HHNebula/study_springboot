@@ -12,12 +12,11 @@
 <body>
     <div>Main ! JSP</div>
     <div>Board</div>
-    <div>
-        <a href="/board">Board</a>
-        <a href="/notice">Notice</a>
-        <a href="/jstlFormats">jstsl Formats</a>
-        <a href="/commonCode/list">CommonCodeController</a>
-    </div>
+    <div><a href="/board">Board</a></div>
+    <div><a href="/notice">Notice</a></div>
+    <div><a href="/jstlFormats">jstsl Formats</a></div>
+    <div><a href="/commonCode/list">CommonCodeController</a></div>
+    <div><a href="/commoncodeour/list">CommonCodeControllerOur</a></div>
 
 </body>
 </html>
