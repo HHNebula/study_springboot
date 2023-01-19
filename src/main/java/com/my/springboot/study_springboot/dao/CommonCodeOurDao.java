@@ -32,4 +32,9 @@ public class CommonCodeOurDao {
         return result;
     }
 
+    public Object insertOne(String sqlMapId, Object dataMap) {
+        Object result = sqlSessionTemplatel.insert(sqlMapId, dataMap);
+        return result;
+    }
+
 }

@@ -35,4 +35,27 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object insertOne(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.insertWithUID";
+        Object result = commonCodeOurDao.insertOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object deleteAndGetList(Object dataMap) {
+        Object result = deleteOne(dataMap);
+        result = getList(dataMap);
+        return result;
+    }
+
+    public Object updateAndGetList(Object dataMap) {
+        Object result = updateOne(dataMap);
+        result = getList(dataMap);
+        return result;
+    }
+
+    public Object insertAndGetList(Object dataMap) {
+        Object result = insertOne(dataMap);
+        result = getList(dataMap);
+        return result;
+    }
 }

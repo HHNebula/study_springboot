@@ -5,6 +5,9 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
 <div class="container">
+    <form action="/commoncodeour/form" method="get">
+        <button class="btn btn-info">form</button>
+    </form>
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr class="text-center">
@@ -22,7 +25,7 @@
                     <td>
                         <form action="/commoncodeour/edit/${resultData.COMMON_CODE_ID}" method="get">
                             <button class="btn btn-link viewPopup">${resultData.COMMON_CODE_ID}</button>
-                        </form>        
+                        </form>
                     </td>
                     <td>${resultData.NAME}</td>
                     <td class="text-center">
@@ -34,8 +37,8 @@
                     </td>
                     <td>
                         <form action="/commoncodeour/delete/${resultData.COMMON_CODE_ID}" method="post">
-                            <button class="btn btn-link viewPopup">delete</button>
-                        </form>        
+                            <button class="btn btn-link viewPopup">Delete</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
