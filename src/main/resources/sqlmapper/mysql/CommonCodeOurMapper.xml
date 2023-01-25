@@ -16,7 +16,7 @@
 
     <update id="updateByUID" parameterType="Map">
         UPDATE CIP_COMMON_CODE
-        SET NAME = #{NAME}
+        SET NAME = #{NAME},
             MODIFY_DATE = sysdate()
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </update>

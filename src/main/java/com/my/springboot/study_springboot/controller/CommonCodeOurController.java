@@ -2,6 +2,8 @@ package com.my.springboot.study_springboot.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +82,17 @@ public class CommonCodeOurController {
 
         return modelAndView;
         // return "redirect:/commoncodeour/list";
+    }
+
+    // 1. @RequestParam Map<String, Object> params > Key가 동일하면 덮어써진다.
+    @RequestMapping(value = "/deleteMulti", method = RequestMethod.POST)
+    public ModelAndView deleteMulti(HttpServletRequest request, @RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+
+        // 2. 위 문제를 해결하기 위해 HttpServletRequest 클래스를 통해 배열로 가져온다.
+        String[] deleteMultis = request.getParameterMap().get("COMMON_CODE_ID");
+
+        return modelAndView;
     }
 
 }

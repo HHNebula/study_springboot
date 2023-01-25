@@ -24,7 +24,7 @@ public class HomeController {
 
     @RequestMapping(value = "/home")
     public String home() {
-        Object result = homeDao.getList();
+        // Object result = homeDao.getList();
         return "home";
     }
 
