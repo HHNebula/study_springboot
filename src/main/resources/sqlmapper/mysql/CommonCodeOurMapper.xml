@@ -49,4 +49,6 @@
         </choose>
         NULL, #{REGISTER_SEQ}, sysdate(), #{MODIFIER_SEQ}, sysdate())
     </insert>
+
+    
 </mapper>
