@@ -43,12 +43,21 @@
             <when test="USE_YN != null">
                 'Yes',
             </when>
-            <otherwise>
+            <otherwise> 
                 'No',
             </otherwise>
         </choose>
         NULL, #{REGISTER_SEQ}, sysdate(), #{MODIFIER_SEQ}, sysdate())
     </insert>
 
-    
+    <!-- call CommonCodeOur.deleteMultiByUIDs -->
+    <delete id="deleteMultiByUIDs" parameterType="Map">
+        DELETE FROM CIP_COMMON_CODE
+        WHERE COMMON_CODE_ID IN (
+            <foreach collection="deleteMultis" item="item" separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        )
+    </delete>
+
 </mapper>

@@ -1,5 +1,9 @@
 package com.my.springboot.study_springboot.controller;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.springboot.study_springboot.service.CommonCodeOurService;
@@ -74,11 +80,25 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    // 파일 등록
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public ModelAndView insert(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+    public ModelAndView insert(MultipartHttpServletRequest multipartHttpServletRequest,
+            @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
-        Object resultMap = commonCodeOurService.insertAndGetList(params);
-        modelAndView.addObject("resultMap", resultMap);
+        String registerSeq = multipartHttpServletRequest.getParameter("REGISTER_SEQ");
+
+        // input:file attribute name
+        MultipartFile file = multipartHttpServletRequest.getFile("file_first");
+        String fileName = file.getOriginalFilename();
+        String relativePath = "src\\main\\resources\\static\\files\\";
+
+        BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get(relativePath + fileName));
+
+        bufferedWriter.write(new String(file.getBytes()));
+
+        commonCodeOurService.insertOne(params);
+        // Object resultMap = commonCodeOurService.insertAndGetList(params);
+        // modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_Our/list");
 
         return modelAndView;
@@ -92,7 +112,11 @@ public class CommonCodeOurController {
 
         // 2. 위 문제를 해결하기 위해 HttpServletRequest 클래스를 통해 배열로 가져온다.
         String[] deleteMultis = request.getParameterMap().get("COMMON_CODE_ID");
+        params.put("deleteMultis", deleteMultis);
+        Object resultMap = commonCodeOurService.deleteMultiAndGetList(params);
 
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_Our/list");
         return modelAndView;
     }
 

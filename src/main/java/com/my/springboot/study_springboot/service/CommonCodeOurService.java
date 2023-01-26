@@ -35,6 +35,12 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object deleteMulti(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.deleteMultiByUIDs";
+        Object result = commonCodeOurDao.updateOne(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object insertOne(Object dataMap) {
         String sqlMapId = "CommonCodeOur.insertWithUID";
         Object result = commonCodeOurDao.insertOne(sqlMapId, dataMap);
@@ -43,6 +49,12 @@ public class CommonCodeOurService {
 
     public Object deleteAndGetList(Object dataMap) {
         Object result = deleteOne(dataMap);
+        result = getList(dataMap);
+        return result;
+    }
+
+    public Object deleteMultiAndGetList(Object dataMap) {
+        Object result = deleteMulti(dataMap);
         result = getList(dataMap);
         return result;
     }
@@ -58,4 +70,5 @@ public class CommonCodeOurService {
         result = getList(dataMap);
         return result;
     }
+
 }

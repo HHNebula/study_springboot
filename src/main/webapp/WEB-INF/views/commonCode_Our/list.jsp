@@ -5,8 +5,12 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
 <div class="container">
+    <%-- form 1 --%>
     <form action="/commoncodeour/deleteMulti" method="post">
-        <button class="btn btn-info">Delete Multi</button>
+        <%-- Just Link --%>
+        <a href="/commoncodeour/form" class="btn btn-info">Insert</a>
+        <%-- form 1 submit --%>
+        <button class="btn btn-info" type="submit">Delete Multi</button>
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr class="text-center">
@@ -25,7 +29,7 @@
                         </td>
                         <td>
                             <form action="/commoncodeour/edit/${resultData.COMMON_CODE_ID}" method="get">
-                                <button class="btn btn-link viewPopup">${resultData.COMMON_CODE_ID}</button>
+                                <button class="btn btn-link viewPopup" type="submit">${resultData.COMMON_CODE_ID}</button>
                             </form>
                         </td>
                         <td>${resultData.NAME}</td>
