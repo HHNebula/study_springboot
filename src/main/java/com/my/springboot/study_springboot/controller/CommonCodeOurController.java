@@ -1,13 +1,14 @@
 package com.my.springboot.study_springboot.controller;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -117,6 +118,39 @@ public class CommonCodeOurController {
 
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_Our/list");
+        return modelAndView;
+    }
+
+    // 멀티 파일 등록
+    @RequestMapping(value = "/insertMulti", method = RequestMethod.POST)
+    public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+            @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
+
+        String relativePath = "C:\\_workspace\\study_springboot\\src\\main\\resources\\static\\files";
+        // 파일 이름 가져오기
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
+        while (fileNames.hasNext()) {
+            String fileName = fileNames.next();
+            MultipartFile file = multipartHttpServletRequest.getFile(fileName);
+            String originFileName = file.getOriginalFilename();
+            String storePath = relativePath + originFileName;
+            file.transferTo(new File(storePath));
+        }
+
+        Object resultMap = commonCodeOurService.insertWithFilesAndGetList(params);
+
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_Our/list");
+        return modelAndView;
+        // return "redirect:/commoncodeour/list";
+    }
+
+    // 멀티 파일 등록 폼
+    @RequestMapping(value = "/formMulti", method = RequestMethod.GET)
+    public ModelAndView formMulti(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        modelAndView.setViewName("commonCode_Our/editMulti");
+
         return modelAndView;
     }
 

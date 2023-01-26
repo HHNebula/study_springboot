@@ -8,7 +8,8 @@
     <%-- form 1 --%>
     <form action="/commoncodeour/deleteMulti" method="post">
         <%-- Just Link --%>
-        <a href="/commoncodeour/form" class="btn btn-info">Insert</a>
+        <a href="/commoncodeour/form" class="btn btn-info">form</a>
+        <a href="/commoncodeour/formMulti" class="btn btn-info">formMulti</a>
         <%-- form 1 submit --%>
         <button class="btn btn-info" type="submit">Delete Multi</button>
         <table class="table table-striped table-hover table-bordered">

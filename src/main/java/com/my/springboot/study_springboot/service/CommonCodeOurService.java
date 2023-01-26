@@ -71,4 +71,12 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object insertWithFilesAndGetList(Object dataMap) {
+        // TO-DO
+        // insert Files
+        Object result = insertOne(dataMap);
+        result = getList(dataMap);
+        return result;
+    }
+
 }
