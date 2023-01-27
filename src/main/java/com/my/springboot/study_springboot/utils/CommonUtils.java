@@ -2,6 +2,9 @@ package com.my.springboot.study_springboot.utils;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CommonUtils {
 
     public String getUniqueSequence() {

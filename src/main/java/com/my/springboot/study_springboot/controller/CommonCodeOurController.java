@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.springboot.study_springboot.service.CommonCodeOurService;
+import com.my.springboot.study_springboot.utils.CommonUtils;
 
 @Controller
 @RequestMapping(value = "/commoncodeour")
@@ -28,6 +32,9 @@ public class CommonCodeOurController {
 
     @Autowired
     private CommonCodeOurService commonCodeOurService;
+
+    @Autowired
+    private CommonUtils commonUtils;
 
     @RequestMapping(value = { "/list", "/", "" }, method = RequestMethod.GET)
     public ModelAndView list(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
@@ -121,28 +128,45 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
-    // 멀티 파일 등록
-    @RequestMapping(value = "/insertMulti", method = RequestMethod.POST)
+    @RequestMapping(value = { "/insertMulti" }, method = RequestMethod.POST)
     public ModelAndView insertMulti(MultipartHttpServletRequest multipartHttpServletRequest,
             @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
 
-        String relativePath = "C:\\_workspace\\study_springboot\\src\\main\\resources\\static\\files";
-        // 파일 이름 가져오기
         Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
+        String relativePath = "C:\\_workspace\\study_springboot\\src\\main\\resources\\static\\files\\";
+
+        Map attachfile = null;
+        List attachfiles = new ArrayList();
+        String physicalFileName = commonUtils.getUniqueSequence();
+        String storePath = relativePath + physicalFileName + "\\";
+        File newPath = new File(storePath);
+        newPath.mkdir(); // create directory
         while (fileNames.hasNext()) {
             String fileName = fileNames.next();
-            MultipartFile file = multipartHttpServletRequest.getFile(fileName);
-            String originFileName = file.getOriginalFilename();
-            String storePath = relativePath + originFileName;
-            file.transferTo(new File(storePath));
+            MultipartFile multipartFile = multipartHttpServletRequest.getFile(fileName);
+            String originalFilename = multipartFile.getOriginalFilename();
+
+            String storePathFileName = storePath + originalFilename;
+            multipartFile.transferTo(new File(storePathFileName));
+
+            // add SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME in HashMap
+            attachfile = new HashMap<>();
+            attachfile.put("ATTACHFILE_SEQ", commonUtils.getUniqueSequence());
+            attachfile.put("SOURCE_UNIQUE_SEQ", params.get("COMMON_CODE_ID"));
+            attachfile.put("ORGINALFILE_NAME", originalFilename);
+            attachfile.put("PHYSICALFILE_NAME", physicalFileName);
+            attachfile.put("REGISTER_SEQ", params.get("REGISTER_SEQ"));
+            attachfile.put("MODIFIER_SEQ", params.get("MODIFIER_SEQ"));
+
+            attachfiles.add(attachfile);
         }
+        params.put("attachfiles", attachfiles);
 
         Object resultMap = commonCodeOurService.insertWithFilesAndGetList(params);
-
         modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("commonCode_Our/list");
         return modelAndView;
-        // return "redirect:/commoncodeour/list";
     }
 
     // 멀티 파일 등록 폼

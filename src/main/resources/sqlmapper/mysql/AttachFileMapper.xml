@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AttachFile">
+
+    <select id="selectListByUID" parameterType="Map" resultType="Map">
+        SELECT * FROM CIP_ATTACHFILE
+        WHERE SOURCE_UNIQUE_SEQ = #{SOURCE_UNIQUE_SEQ};
+    </select>
+
+    <insert id="insertMulti" parameterType="map">
+        INSERT INTO CIP_ATTACHFILE
+        ( ATTACHFILE_SEQ, SOURCE_UNIQUE_SEQ, ORGINALFILE_NAME, PHYSICALFILE_NAME, REGISTER_SEQ, REGISTRY_DATE, MODIFIER_SEQ, MODIFY_DATE )
+        VALUES
+        <foreach collection="attachfiles" item="attachFile" separator="),(" open="(" close=")">
+            #{attachFile.ATTACHFILE_SEQ}, #{attachFile.SOURCE_UNIQUE_SEQ}, #{attachFile.ORGINALFILE_NAME}, #{attachFile.PHYSICALFILE_NAME},
+            #{attachFile.REGISTER_SEQ}, sysdate(), #{attachFile.MODIFIER_SEQ}, sysdate()
+        </foreach>
+    </insert>
+
+
+</mapper>

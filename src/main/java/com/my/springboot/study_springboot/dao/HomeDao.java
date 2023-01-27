@@ -18,7 +18,7 @@ public class HomeDao {
     private SqlSessionTemplate sqlSessionTemplate;
 
     public Object getList() {
-        String statement = "Home.selectFormAnswersByQuestionUid";
+        String statement = "AttachFile.selectFormAnswersByQuestionUid";
         Map parameter = new HashMap();
         parameter.put("QUESTIONS_UID", "Q2");
         Object resultset = sqlSessionTemplate.selectList(statement, parameter);
