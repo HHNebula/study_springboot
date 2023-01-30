@@ -68,6 +68,24 @@ public class CommonCodeOurController {
         return modelAndView;
     }
 
+    @RequestMapping(value = { "/updateMulti" }, method = RequestMethod.POST)
+    public ModelAndView updateMulti(MultipartHttpServletRequest multipartHttpServletRequest,
+            @RequestParam Map<String, Object> params, ModelAndView modelAndView) throws IOException {
+
+        Iterator<String> fileNames = multipartHttpServletRequest.getFileNames();
+
+        while (fileNames.hasNext()) {
+            String value = (String) params.get(fileNames.next());
+            System.out.print(value); // DB 저장이 되어 있다.
+            if (value != null) {
+                // originalFilename 와 있는지 여부 확인
+            }
+
+        }
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/delete/{uniqueId}", method = RequestMethod.POST)
     public ModelAndView delete(@PathVariable String uniqueId, @RequestParam Map<String, Object> params,
             ModelAndView modelAndView) {
