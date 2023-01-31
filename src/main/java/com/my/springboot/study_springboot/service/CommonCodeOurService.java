@@ -80,4 +80,10 @@ public class CommonCodeOurService {
         return result;
     }
 
+    public Object getListAndCnt(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.selectListByUID";
+        Object result = getList(dataMap);
+        return result;
+    }
+
 }
